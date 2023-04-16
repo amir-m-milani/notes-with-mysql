@@ -1,6 +1,5 @@
 <?php
-require "./Connection.php";
-$connection = new Connection();
+$connection = require "./Connection.php";
 $notes = $connection->getNotes();
 
 // echo "<pre>";
@@ -37,7 +36,7 @@ $notes = $connection->getNotes();
                         </a>
                     </div>
                     <div class="description">
-                        <?php echo $note['decription']; ?>
+                        <?php echo $note['description']; ?>
                     </div>
                     <small><?php echo $note['create_date']; ?></small>
                     <button class="close">X</button>
