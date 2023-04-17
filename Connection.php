@@ -26,5 +26,22 @@ class Connection
         $statment->bindValue('date', date('Y-m-d H:i:s'));
         return $statment->execute();
     }
+
+    public function getNotebyID($id)
+    {
+        $statment = $this->pdo->prepare("SELECT * FROM notes WHERE id = :id");
+        $statment->bindValue('id', $id);
+        $statment->execute();
+        return $statment->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function updateNote($id, $note)
+    {
+        $statment = $this->pdo->prepare("UPDATE notes SET title=:title, description = :description WHERE id = :id");
+        $statment->bindValue('id', $id);
+        $statment->bindValue('title', $note['title']);
+        $statment->bindValue('description', $note['description']);
+        $statment->execute();
+    }
 }
 return new Connection();
