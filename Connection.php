@@ -43,5 +43,12 @@ class Connection
         $statment->bindValue('description', $note['description']);
         $statment->execute();
     }
+
+    public function deleteNote($id)
+    {
+        $statment = $this->pdo->prepare("DELETE FROM notes WHERE id = :id");
+        $statment->bindValue('id', $id);
+        $statment->execute();
+    }
 }
 return new Connection();
